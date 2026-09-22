@@ -1,0 +1,48 @@
+---
+layout: "sb"
+sb_root: "../"
+sb_title: "Support SuperBest — Donate | SuperBest.com"
+sb_desc: "Support independent, reader-first recommendations. Donations fund operations, marketing, new talent, contests and prizes."
+sb_url: "https://superbest.com/support/"
+sb_type: "website"
+sb_bodyattr: ""
+---
+<div class="container">
+<header class="page-head"><span class="eyebrow">💜 Reader-supported</span><h1>Support independent recommendations</h1><p class="muted" style="font-size:1.1rem;max-width:760px">SuperBest is free for everyone. Your support keeps it independent and funds research, hiring, community contests and prizes.</p></header>
+<div class="grid g2" style="align-items:start">
+<div class="card">
+<h3>Give once</h3>
+<div class="amounts" data-target="pledge-amount"><button type="button" data-amt="5" class="">$5</button><button type="button" data-amt="10" class="">$10</button><button type="button" data-amt="25" class="on">$25</button><button type="button" data-amt="50" class="">$50</button><button type="button" data-amt="100" class="">$100</button><button type="button" data-amt="250" class="">$250</button></div>
+<p class="small muted">Choose a secure payment method:</p>
+<div class="buy-row">
+<a class="btn btn-primary" href="#pledge" data-pay="paypal">PayPal</a>
+<a class="btn btn-primary" href="#pledge" data-pay="stripe">Card (Stripe)</a>
+<a class="btn btn-accent" href="#pledge" data-pay="buymeacoffee">Buy Me a Coffee</a>
+<a class="btn btn-ghost" href="#pledge" data-pay="kofi">Ko-fi</a>
+<a class="btn btn-ghost" href="#pledge" data-pay="patreon">Patreon (monthly)</a>
+</div>
+<p class="small muted" style="margin-top:12px">Payments are processed by the provider you choose. SuperBest never sees your card details.</p>
+</div>
+<div class="card">
+<h3>Where your support goes</h3>
+<div class="alloc"><div class="bar" style="grid-template-columns:1fr 120px 40px"><span>Ongoing operations (hosting, tools, research)</span><i><b style="width:35%"></b></i><span>35%</span></div><div class="bar" style="grid-template-columns:1fr 120px 40px"><span>Promotion & marketing</span><i><b style="width:20%"></b></i><span>20%</span></div><div class="bar" style="grid-template-columns:1fr 120px 40px"><span>Hiring talent (writers, video, dev)</span><i><b style="width:25%"></b></i><span>25%</span></div><div class="bar" style="grid-template-columns:1fr 120px 40px"><span>Contests & prizes</span><i><b style="width:20%"></b></i><span>20%</span></div></div>
+<p class="small muted" style="margin-top:12px">Target allocation. We publish an annual summary of how support was used.</p>
+</div>
+</div>
+<h2 style="margin-top:32px">Membership tiers</h2>
+<div class="tiers"><div class="tier"><h3 style="margin-top:8px">Supporter</h3><div class="price">$5<span class="small muted"> one-time</span></div><ul><li>Our heartfelt thanks</li><li>Name on the Supporters Wall (optional)</li></ul><a class="btn btn-ghost btn-block" href="#pledge" data-pay="paypal">Choose Supporter</a></div><div class="tier featured"><span class="badge" style="align-self:flex-start">Most popular</span><h3 style="margin-top:8px">Champion</h3><div class="price">$10<span class="small muted"> /month</span></div><ul><li>Everything in Supporter</li><li>Early access to new guides</li><li>Vote on what we cover next</li></ul><a class="btn btn-primary btn-block" href="#pledge" data-pay="patreon">Choose Champion</a></div><div class="tier"><h3 style="margin-top:8px">Patron</h3><div class="price">$50<span class="small muted"> /month</span></div><ul><li>Everything in Champion</li><li>Quarterly behind-the-scenes report</li><li>Priority matching requests</li></ul><a class="btn btn-ghost btn-block" href="#pledge" data-pay="patreon">Choose Patron</a></div><div class="tier"><h3 style="margin-top:8px">Founding Sponsor</h3><div class="price">$500<span class="small muted"> one-time</span></div><ul><li>Logo or name on our Sponsors page</li><li>Sponsor a contest prize</li><li>Thank-you in the newsletter</li></ul><a class="btn btn-ghost btn-block" href="#pledge" data-pay="stripe">Choose Founding Sponsor</a></div></div>
+<h2 style="margin-top:32px">Pledge, sponsor or support another way</h2>
+<p class="muted">Prefer bank transfer, a corporate sponsorship, or supporting a specific contest or hire? Send a pledge and we'll reply with secure payment details.</p>
+<form class="sb-form card" id="pledge" data-subject="DONATION / SUPPORT pledge" data-ok="💜 Thank you! We'll reply with secure payment details shortly.">
+<div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div><input type="hidden" name="form" value="donation-pledge">
+<div class="row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div>
+<div class="row"><div class="field"><label>Amount (USD)</label><input id="pledge-amount" type="number" name="amount" min="1" value="25" required></div>
+<div class="field"><label>Support type</label><select name="purpose"><option>General support / operations</option><option>Promotions & marketing</option><option>Hiring talent</option><option>Contests & prizes</option><option>Corporate sponsorship</option></select></div></div>
+<div class="row"><div class="field"><label>Preferred method</label><select name="method"><option>PayPal</option><option>Card (Stripe)</option><option>Buy Me a Coffee</option><option>Ko-fi</option><option>Patreon (monthly)</option><option>Bank transfer</option><option>Other</option></select></div>
+<div class="field"><label>Frequency</label><select name="frequency"><option>One-time</option><option>Monthly</option><option>Yearly</option></select></div></div>
+<div class="field"><label class="check"><input type="checkbox" name="wall" value="yes"> List my name on the Supporters Wall</label></div>
+<div class="field"><label>Message (optional)</label><textarea name="message"></textarea></div>
+<div class="field"><label class="check"><input type="checkbox" name="consent" value="yes" required> I agree to the <a href="../privacy/">Privacy Policy</a> and to be contacted about my request.</label></div>
+<button class="btn btn-primary" type="submit">Send my pledge</button>
+</form>
+<p class="small muted" style="margin-top:14px">Note: SuperBest.com is not a registered charity. Contributions are not tax-deductible unless stated otherwise in writing.</p><div style="height:48px"></div></div>
