@@ -120,44 +120,56 @@ export function chromeExtra(R) {
 </div>`;
 }
 
-export function layout({ path = '', title, desc, body, schema = [], noModal = false, type = 'website' }) {
-  const R = rootFor(path);
-  const url = SITE.url + '/' + path;
-  const fullTitle = path === '' ? title : `${title} | SuperBest.com`;
+export const minify = (html) => html.replace(/\n\s+/g, '\n');
+
+function shell(v) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(fullTitle)}</title>
-<meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${url}">
-<meta property="og:type" content="${type}">
-<meta property="og:title" content="${esc(fullTitle)}">
-<meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${url}">
+<title>${v.title}</title>
+<meta name="description" content="${v.desc}">
+<link rel="canonical" href="${v.url}">
+<meta property="og:type" content="${v.type}">
+<meta property="og:title" content="${v.title}">
+<meta property="og:description" content="${v.desc}">
+<meta property="og:url" content="${v.url}">
 <meta property="og:site_name" content="SuperBest.com">
 <meta property="og:image" content="${SITE.url}/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#5b3df5">
-<link rel="icon" href="${R}assets/img/favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="${R}manifest.webmanifest">
+<link rel="icon" href="${v.root}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="${v.root}manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${R}assets/css/style.css">
+<link rel="stylesheet" href="${v.root}assets/css/style.css">
 <script>try{var t=localStorage.getItem('sb-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head>
-<body data-root="${R}"${noModal ? ' data-no-modal' : ''}>
+<body data-root="${v.root}"${v.bodyattr}>
 <a class="skip" href="#main">Skip to content</a>
-${header(R)}
+${header(v.root)}
 <main id="main">
-${body}
+${v.content}
 </main>
-${footer(R)}
-<script src="${R}assets/js/config.js"></script>
-<script src="${R}assets/js/chrome.js" defer></script>
-<script src="${R}assets/js/app.js" defer></script>
+${footer(v.root)}
+<script src="${v.root}assets/js/config.js"></script>
+<script src="${v.root}assets/js/chrome.js" defer></script>
+<script src="${v.root}assets/js/app.js" defer></script>
 </body>
 </html>`;
+}
+
+// Jekyll layout (GitHub Pages renders it server-side). Keys are prefixed sb_ to avoid Jekyll/plugin clashes.
+const KEYS = ['root', 'title', 'desc', 'url', 'type', 'bodyattr'];
+export const TEMPLATE = minify(shell(Object.assign({ content: '{{ content }}' }, ...KEYS.map((k) => ({ [k]: `{{ page.sb_${k} }}` })))));
+export const render = (fm, content) => KEYS.reduce((h, k) => h.split(`{{ page.sb_${k} }}`).join(fm['sb_' + k]), TEMPLATE).split('{{ content }}').join(content);
+
+export function layout({ path = '', title, desc, body, schema = [], noModal = false, type = 'website' }) {
+  const R = rootFor(path);
+  const fullTitle = path === '' ? title : `${title} | SuperBest.com`;
+  const fm = { layout: 'sb', sb_root: R, sb_title: esc(fullTitle), sb_desc: esc(desc), sb_url: SITE.url + '/' + path, sb_type: type, sb_bodyattr: noModal ? ' data-no-modal' : '' };
+  const content = minify(schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n') + '\n' + body).trim();
+  const html = render(fm, content);
+  return Object.assign(new String(html), { fm, content, html });
 }

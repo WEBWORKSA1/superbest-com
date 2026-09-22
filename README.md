@@ -13,11 +13,11 @@
 ```bash
 # 1) Edit content: src/data/lists.mjs, src/data/categories.mjs
 # 2) Edit monetisation switches: assets/js/config.js (no rebuild needed)
-node src/build.mjs     # regenerates all HTML, sitemap.xml, products.json, search-index.json
+node src/build.mjs     # regenerates static HTML + dist-jekyll/ (Jekyll sources), sitemap.xml, products.json, search-index.json
 ```
 Add a new guide by appending an object to `lists.mjs`. Its page, vs-page, hub card, search entry, compare entries and sitemap entry are generated automatically.
 
-The generated HTML is committed to the repo root, so GitHub Pages serves it directly with no build step. After editing data or templates, run the build and commit the output.
+**Deployment:** the live site is served by GitHub Pages from the `gh-pages` branch (Settings → Pages → Deploy from branch → `gh-pages` / root). That branch holds the Jekyll sources from `dist-jekyll/` plus the static assets (`assets/`, `favicon.svg`, `manifest.webmanifest`, `robots.txt`, `ads.txt`, `sitemap.xml`, `products.json`, `search-index.json`, `404.html`). Pages then renders every page through `_layouts/sb.html`, so there's no manual build step on GitHub. After editing data or templates, run `node src/build.mjs` and copy the contents of `dist-jekyll/` and the changed assets to `gh-pages`. Source code lives on `main`.
 
 ## Go-live checklist
 1. **Forms:** submit any form once. FormSubmit emails an activation link to the site inbox. Click **Activate**. (Optional: paste the private alias FormSubmit gives you into `formAlias` in `config.js`.)
