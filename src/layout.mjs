@@ -33,16 +33,21 @@ export function newsletterForm(R, source = 'newsletter', compact = false) {
   </form>`;
 }
 
-function header(R) {
-  const mega = categories.map((c) => `<a href="${R}category/${c.slug}/"><span>${c.icon}</span><span><b>${esc(c.name)}</b><small>${lists.filter((l) => l.category === c.slug).length} best-of guides</small></span></a>`).join('')
+const guides = (slug) => { const n = lists.filter((l) => l.category === slug).length; return `${n} best-of guide${n === 1 ? '' : 's'}`; };
+
+export function megaHTML(R) {
+  return categories.map((c) => `<a href="${R}category/${c.slug}/"><span>${c.icon}</span><span><b>${esc(c.name)}</b><small>${guides(c.slug)}</small></span></a>`).join('')
     + `<a href="${R}best/"><span>🗂️</span><span><b>All best lists A–Z</b><small>Every SuperBest guide</small></span></a>`;
+}
+
+function header(R) {
   return `
 <div class="inquiry-bar">Contact, if you are interested in this website / domain name / Sponsorship / Advertisement / Partnership — <a href="${SITE.inquiry}" target="_blank" rel="noopener">Contact us →</a></div>
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="${R}" aria-label="SuperBest home"><span class="logo-mark">★</span><span>Super<b>Best</b></span></a>
     <ul class="menu" id="menu">
-      <li><button aria-haspopup="true">Best Lists ▾</button><div class="mega">${mega}</div></li>
+      <li><button aria-haspopup="true">Best Lists ▾</button><div class="mega" id="mega"><a href="${R}best/"><span>🗂️</span><span><b>All best lists A–Z</b></span></a></div></li>
       <li><a href="${R}compare/">Compare</a></li>
       <li><a href="${R}finder/">Finder Quiz</a></li>
       <li><a href="${R}awards/">Awards</a></li>
@@ -64,7 +69,20 @@ function footer(R) {
   return `
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
+    <div id="chrome-footer"></div>
+    <p class="small"><a href="${R}about/">About</a> · <a href="${R}how-we-test/">How we rank</a> · <a href="${R}advertise/">Advertise</a> · <a href="${R}contact/">Contact</a> · <a href="${R}disclosure/">Disclosures & trademarks</a> · <a href="${R}privacy/">Privacy</a> · <a href="${R}terms/">Terms</a></p>
+    <div class="legal">
+      <p><b>Affiliate disclosure:</b> SuperBest.com may earn a commission when you buy through links on this site, at no extra cost to you. This never affects our rankings. <a href="${R}disclosure/">Learn more</a>.</p>
+      <p><b>Trademark & copyright notice:</b> SuperBest.com is an independent website and is not affiliated with, endorsed by, or connected to any company, store, brand or product that uses the words "Super Best", "Superbest" or similar names. All product names, logos and brands mentioned are the property of their respective owners and are used for identification purposes only. Site content, design and code © <span data-year>2026</span> SuperBest.com. All rights reserved.</p>
+      <p>Interested in this website, the domain name, sponsorship, advertising or partnership? <a href="${SITE.inquiry}" target="_blank" rel="noopener">Contact here</a>.</p>
+    </div>
+  </div>
+</footer>
+<div id="chrome-extra"></div>`;
+}
+
+export function chromeFooter(R) {
+  return `<div class="footer-grid">
       <div>
         <a class="logo" href="${R}" style="color:#fff"><span class="logo-mark">★</span><span>Super<b>Best</b></span></a>
         <p style="margin-top:12px">${esc(SITE.tagline)} Independent, reader-supported recommendations.</p>
@@ -75,14 +93,11 @@ function footer(R) {
       <div><h4>Tools</h4><ul><li><a href="${R}compare/">Compare products</a></li><li><a href="${R}finder/">Finder quiz</a></li><li><a href="${R}get-matched/">Get matched (free)</a></li><li><a href="${R}deals/">Deals & price alerts</a></li><li><a href="${R}checklist/">Buyer's checklist</a></li><li><a href="${R}videos/">Video reviews</a></li></ul></div>
       <div><h4>Community</h4><ul><li><a href="${R}awards/">SuperBest Awards</a></li><li><a href="${R}contests/">Contests & giveaways</a></li><li><a href="${R}submit/">Suggest a product</a></li><li><a href="${R}support/">Support / Donate</a></li><li><a href="${R}careers/">Careers & talent</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="${R}about/">About</a></li><li><a href="${R}how-we-test/">How we rank</a></li><li><a href="${R}advertise/">Advertise & partner</a></li><li><a href="${R}contact/">Contact</a></li><li><a href="${R}disclosure/">Disclosures & trademarks</a></li><li><a href="${R}privacy/">Privacy</a> · <a href="${R}terms/">Terms</a></li></ul></div>
-    </div>
-    <div class="legal">
-      <p><b>Affiliate disclosure:</b> SuperBest.com may earn a commission when you buy through links on this site, at no extra cost to you. This never affects our rankings. <a href="${R}disclosure/">Learn more</a>.</p>
-      <p><b>Trademark & copyright notice:</b> SuperBest.com is an independent website and is not affiliated with, endorsed by, or connected to any company, store, brand or product that uses the words "Super Best", "Superbest" or similar names. All product names, logos and brands mentioned are the property of their respective owners and are used for identification purposes only. Site content, design and code © <span data-year>2026</span> SuperBest.com. All rights reserved.</p>
-      <p>Interested in this website, the domain name, sponsorship, advertising or partnership? <a href="${SITE.inquiry}" target="_blank" rel="noopener">Contact here</a>.</p>
-    </div>
-  </div>
-</footer>
+    </div>`;
+}
+
+export function chromeExtra(R) {
+  return `
 <div class="mobile-cta"><a class="btn btn-ghost" href="${R}best/">Best Lists</a><a class="btn btn-primary" href="${R}get-matched/">Get Matched Free</a></div>
 <div class="consent" role="dialog" aria-label="Cookie consent">
   <p style="margin-bottom:10px">We use cookies for analytics and ads that keep SuperBest free. See our <a href="${R}privacy/">Privacy Policy</a>.</p>
@@ -141,6 +156,7 @@ ${body}
 </main>
 ${footer(R)}
 <script src="${R}assets/js/config.js"></script>
+<script src="${R}assets/js/chrome.js" defer></script>
 <script src="${R}assets/js/app.js" defer></script>
 </body>
 </html>`;

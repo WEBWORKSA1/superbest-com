@@ -17,7 +17,7 @@ node src/build.mjs     # regenerates all HTML, sitemap.xml, products.json, searc
 ```
 Add a new guide by appending an object to `lists.mjs`. Its page, vs-page, hub card, search entry, compare entries and sitemap entry are generated automatically.
 
-A GitHub Actions workflow (`.github/workflows/build-deploy.yml`) rebuilds the site on every push to `main` and publishes it to the `gh-pages` branch (GitHub Pages).
+The generated HTML is committed to the repo root, so GitHub Pages serves it directly with no build step. After editing data or templates, run the build and commit the output.
 
 ## Go-live checklist
 1. **Forms:** submit any form once. FormSubmit emails an activation link to the site inbox. Click **Activate**. (Optional: paste the private alias FormSubmit gives you into `formAlias` in `config.js`.)
@@ -27,7 +27,8 @@ A GitHub Actions workflow (`.github/workflows/build-deploy.yml`) rebuilds the si
 5. **YouTube:** set `youtubeChannelUrl` and map guide slugs to video IDs in `youtubeVideos`.
 6. **Donations:** paste your PayPal / Stripe / BMC / Ko-fi / Patreon links into `donate`.
 7. **Search Console:** submit `https://superbest.com/sitemap.xml`.
-8. **Content:** product lineups change fast. Review picks and specs before launch and on a regular cycle.
+8. **Social image:** run `python3 src/og.py` (needs Pillow) and commit `assets/img/og.png`.
+9. **Content:** product lineups change fast. Review picks and specs before launch and on a regular cycle.
 
 ## Docs
 - `docs/IDEA-AND-STRATEGY.md`: why this idea, revenue model, projections
