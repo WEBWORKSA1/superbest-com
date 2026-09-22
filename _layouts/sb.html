@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.sb_title }}</title>
+<meta name="description" content="{{ page.sb_desc }}">
+<link rel="canonical" href="{{ page.sb_url }}">
+<meta property="og:type" content="{{ page.sb_type }}">
+<meta property="og:title" content="{{ page.sb_title }}">
+<meta property="og:description" content="{{ page.sb_desc }}">
+<meta property="og:url" content="{{ page.sb_url }}">
+<meta property="og:site_name" content="SuperBest.com">
+<meta property="og:image" content="https://superbest.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#5b3df5">
+<link rel="icon" href="{{ page.sb_root }}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="{{ page.sb_root }}manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ page.sb_root }}assets/css/style.css">
+<script>try{var t=localStorage.getItem('sb-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body data-root="{{ page.sb_root }}"{{ page.sb_bodyattr }}>
+<a class="skip" href="#main">Skip to content</a>
+<div class="inquiry-bar">Contact, if you are interested in this website / domain name / Sponsorship / Advertisement / Partnership — <a href="https://web.works/contact" target="_blank" rel="noopener">Contact us →</a></div>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="{{ page.sb_root }}" aria-label="SuperBest home"><span class="logo-mark">★</span><span>Super<b>Best</b></span></a>
+<ul class="menu" id="menu">
+<li><button aria-haspopup="true">Best Lists ▾</button><div class="mega" id="mega"><a href="{{ page.sb_root }}best/"><span>🗂️</span><span><b>All best lists A–Z</b></span></a></div></li>
+<li><a href="{{ page.sb_root }}compare/">Compare</a></li>
+<li><a href="{{ page.sb_root }}finder/">Finder Quiz</a></li>
+<li><a href="{{ page.sb_root }}awards/">Awards</a></li>
+<li><a href="{{ page.sb_root }}contests/">Contests</a></li>
+<li><a href="{{ page.sb_root }}videos/">Videos</a></li>
+<li><a href="{{ page.sb_root }}support/">Support Us</a></li>
+</ul>
+<div class="nav-right">
+<div class="search-wrap"><input type="search" placeholder="Search best picks…" data-search aria-label="Search"><div class="search-results"></div></div>
+<button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+<a class="btn btn-primary btn-sm" href="{{ page.sb_root }}get-matched/">Get Matched</a>
+<button class="icon-btn burger" aria-label="Menu" aria-controls="menu" aria-expanded="false">☰</button>
+</div>
+</div>
+</header>
+<main id="main">
+{{ content }}
+</main>
+<footer class="site-footer">
+<div class="container">
+<div id="chrome-footer"></div>
+<p class="small"><a href="{{ page.sb_root }}about/">About</a> · <a href="{{ page.sb_root }}how-we-test/">How we rank</a> · <a href="{{ page.sb_root }}advertise/">Advertise</a> · <a href="{{ page.sb_root }}contact/">Contact</a> · <a href="{{ page.sb_root }}disclosure/">Disclosures & trademarks</a> · <a href="{{ page.sb_root }}privacy/">Privacy</a> · <a href="{{ page.sb_root }}terms/">Terms</a></p>
+<div class="legal">
+<p><b>Affiliate disclosure:</b> SuperBest.com may earn a commission when you buy through links on this site, at no extra cost to you. This never affects our rankings. <a href="{{ page.sb_root }}disclosure/">Learn more</a>.</p>
+<p><b>Trademark & copyright notice:</b> SuperBest.com is an independent website and is not affiliated with, endorsed by, or connected to any company, store, brand or product that uses the words "Super Best", "Superbest" or similar names. All product names, logos and brands mentioned are the property of their respective owners and are used for identification purposes only. Site content, design and code © <span data-year>2026</span> SuperBest.com. All rights reserved.</p>
+<p>Interested in this website, the domain name, sponsorship, advertising or partnership? <a href="https://web.works/contact" target="_blank" rel="noopener">Contact here</a>.</p>
+</div>
+</div>
+</footer>
+<div id="chrome-extra"></div>
+<script src="{{ page.sb_root }}assets/js/config.js"></script>
+<script src="{{ page.sb_root }}assets/js/chrome.js" defer></script>
+<script src="{{ page.sb_root }}assets/js/app.js" defer></script>
+</body>
+</html>
